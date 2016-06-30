@@ -15,6 +15,7 @@ module.exports = {
       type: 'string',
       primaryKey: true,
       defaultsTo: function() {
+        var uuid = require('node-uuid');
         return uuid.v4();
       }
     },

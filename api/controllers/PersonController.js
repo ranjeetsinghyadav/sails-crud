@@ -7,4 +7,10 @@
 
 module.exports = {
 
+  getPersons: function(req, res) {
+        PersonService.getPersons(function(persons) {
+            res.json(persons);
+        });
+  }
+
 };
