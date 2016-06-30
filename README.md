@@ -1,18 +1,29 @@
-# Application build in SAILS, Exposed CRUD APIs along with few data filter APIs based on input
+# Demo SAILS Application
 
-a [Sails](http://sailsjs.org) application
+a [Sails](http://sailsjs.org) application. Exposed CRUD APIs along with few data filter APIs based on input
 
 # Prerequisites to run this application
+
 Installations - Nodejs, npm, sails framework
 
+
 npm install
+
+
 npm install sails-mysql
+
+
 npm install sails-mongo
+
+
 npm install node-uuid
+
+
 
 # Few API examples along with their respective payload
 
 POST http://localhost:1337/person/
+
 
 {
   "firstName":"Ranjeet",
@@ -22,6 +33,7 @@ POST http://localhost:1337/person/
   "accounts":[]
 }
 
+
 {
   "firstName":"Sourav",
   "lastName":"Sachin",
@@ -30,11 +42,15 @@ POST http://localhost:1337/person/
   "accounts":[]
 }
 
+
 GET http://localhost:1337/person/
+
 
 --------------------------------------------------------
 
+
 POST http://localhost:1337/bankDetails/
+
 
 {
   "bankName":"CITI",
@@ -45,6 +61,7 @@ POST http://localhost:1337/bankDetails/
   "owner":1
 }
 
+
 {
   "bankName":"HDFC",
   "address":"Andheri East, Mumbai, MH, India",
@@ -54,11 +71,15 @@ POST http://localhost:1337/bankDetails/
   "owner":2
 }
 
+
 GET http://localhost:1337/bankDetails/
+
 
 --------------------------------------------------------
 
+
 POST http://localhost:1337/transactionDetails/
+
 
 {
   "txnAmount":501.51,
@@ -67,12 +88,14 @@ POST http://localhost:1337/transactionDetails/
   "receiver": 2
 }
 
+
 {
   "txnAmount":101,
   "status":"pending",
   "sender":1,
   "receiver": 2
 }
+
 
 {
   "txnAmount":1000,
@@ -81,6 +104,7 @@ POST http://localhost:1337/transactionDetails/
   "receiver": 2
 }
 
+
 {
   "txnAmount":1500,
   "status":"success",
@@ -88,11 +112,21 @@ POST http://localhost:1337/transactionDetails/
   "receiver": 1
 }
 
+
 # APIs to GET transaction details based on different filters
 
+
 GET http://localhost:1337/transactionDetails/
+
+
 GET http://localhost:1337/transactionDetails/success
+
+
 GET http://localhost:1337/transactionDetails/failed
+
+
 GET http://localhost:1337/transactionDetails/filter?amountGreaterThan=600
+
+
 
 
