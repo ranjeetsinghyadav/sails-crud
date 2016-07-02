@@ -18,27 +18,33 @@ As instructed, I have used two datasources - mysql db to persist TransactionDeta
 
 # Prerequisites to run this application
 
-    Installations - Nodejs, npm, sails framework, mongodb, mysql db
+    Nodejs, npm, sails framework, mongodb, mysql db
 
 # Project Setup
 
 1. clone this project in your machine
 
-    git clone https://ranjeetsinghyadav@bitbucket.org/ranjeetsinghyadav/sails-crud.git
-
 2. cd to sails-crud directory 
 
-3. edit/configure mysql and mongodb database connections in config/connections.js file
+3. edit/configure mysql and mongodb database connection settings(host, port, user, password, database) in config/connections.js file.
+
+    Note: One can use localDiskDb as default datastore to quickly setup the application. For doing this one has to comment out below line 
+    
+        Line# 43 to 66 in connections.js
+        
+        Line# 10 (connection property) in all models (i.e. Person.js, BankDetails.js & TransactionDetails.js)
 
 4. Run below commands to install project dependencies
 
-    npm install
+        npm install
+    
+        npm install sails-disk
 
-    npm install sails-mysql
+        npm install sails-mysql
 
-    npm install sails-mongo
+        npm install sails-mongo
 
-    npm install node-uuid
+        npm install node-uuid
 
 # Run application in dev mode using below command
 
@@ -60,23 +66,23 @@ Request URL:-
 
 JSON Payload 1:- 
 
-{
-  "firstName":"Ranjeet",
-  "lastName":"Yadav",
-  "phoneNumber":"9972429140",
-  "email": "ranjeets@pb.com",
-  "accounts":[]
-}
+    {
+      "firstName":"Ranjeet",
+      "lastName":"Yadav",
+      "phoneNumber":"9972429140",
+      "email": "ranjeets@pb.com",
+      "accounts":[]
+    }
 
 JSON Payload 2:- 
 
-{
-  "firstName":"Sourav",
-  "lastName":"Sachin",
-  "phoneNumber":"9845377339",
-  "email": "sachin@remitr.com",
-  "accounts":[]
-}
+    {
+      "firstName":"Sourav",
+      "lastName":"Sachin",
+      "phoneNumber":"9845377339",
+      "email": "sachin@remitr.com",
+      "accounts":[]
+    }
 
 # Verify Person data
 
@@ -96,25 +102,25 @@ Request URL:-
 
 JSON Payload 1:- 
 
-{
-  "bankName":"CITI",
-  "address":"Sector-45, Gurgaon, Haryana, India",
-  "accountNumber":"9972429140-111",
-  "accountType": "Savings",
-  "customerEmail": "ranjeets@policybazaar.com",
-  "owner":1
-}
+    {
+      "bankName":"CITI",
+      "address":"Sector-45, Gurgaon, Haryana, India",
+      "accountNumber":"9972429140-111",
+      "accountType": "Savings",
+      "customerEmail": "ranjeets@policybazaar.com",
+      "owner":1
+    }
 
 JSON Payload 2:- 
 
-{
-  "bankName":"HDFC",
-  "address":"Andheri East, Mumbai, MH, India",
-  "accountNumber":"9845377339-111",
-  "accountType": "Savings",
-  "customerEmail": "sachin@remitr.com",
-  "owner":2
-}
+    {
+      "bankName":"HDFC",
+      "address":"Andheri East, Mumbai, MH, India",
+      "accountNumber":"9845377339-111",
+      "accountType": "Savings",
+      "customerEmail": "sachin@remitr.com",
+      "owner":2
+    }
 
 # Verify Bank Details
 
@@ -134,48 +140,48 @@ Request URL:-
 
 JSON Payload 1:- 
 
-{
-  "txnAmount":501.51,
-  "status":"success",
-  "sender":1,
-  "receiver": 2
-}
+    {
+      "txnAmount":501.51,
+      "status":"success",
+      "sender":1,
+      "receiver": 2
+    }
 
 JSON Payload 2:- 
 
-{
-  "txnAmount":101,
-  "status":"pending",
-  "sender":1,
-  "receiver": 2
-}
+    {
+      "txnAmount":101,
+      "status":"pending",
+      "sender":1,
+      "receiver": 2
+    }
 
 JSON Payload 3:- 
 
-{
-  "txnAmount":1000,
-  "status":"failed",
-  "sender":1,
-  "receiver": 2
-}
+    {
+      "txnAmount":1000,
+      "status":"failed",
+      "sender":1,
+      "receiver": 2
+    }
 
 JSON Payload 4:- 
 
-{
-  "txnAmount":1500,
-  "status":"success",
-  "sender":2,
-  "receiver": 1
-}
+    {
+      "txnAmount":1500,
+      "status":"success",
+      "sender":2,
+      "receiver": 1
+    }
 
 JSON Payload 5:- 
 
-{
-  "txnAmount":600,
-  "status":"pending",
-  "sender":2,
-  "receiver": 1
-}
+    {
+      "txnAmount":600,
+      "status":"pending",
+      "sender":2,
+      "receiver": 1
+    }
 
 # APIs to GET transaction details based on different filters
 
