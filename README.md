@@ -1,29 +1,64 @@
 # Demo SAILS Application
 
-a [Sails](http://sailsjs.org) application. Exposed CRUD APIs along with few data filter APIs based on input
+a [Sails](http://sailsjs.org) application.
+
+Its a very simple POC sails application which exposes REST APIs for fetching transaction details. 
+
+There are three models involved - Person, BankDetails & TransactionDetails. 
+
+Person-to-BankDetails have 1-to-many association, TransactionDetails have one way association with sender(Person) and receiver(Person).
+
+TransactionDetails, along with above associations, have attributes like orderNumber, txnAmount and status.
+
+Aprat from default APIs which are exposed by sails framework itself based on models design, This application has exposed few other simple APIs 
+to get transaction details based on different criterias/filters like - failed transactions, success transactions and transactions 
+which are having txnAmount greater amount than a specific value.
+
+As instructed, I have used two datasources - mysql db to persist TransactionDetails model and mongodb for Person, BankDetails persistance.
 
 # Prerequisites to run this application
 
-Installations - Nodejs, npm, sails framework
+    Installations - Nodejs, npm, sails framework, mongodb, mysql db
 
+# Project Setup
 
-npm install
+1. clone this project in your machine
 
+    git clone https://ranjeetsinghyadav@bitbucket.org/ranjeetsinghyadav/sails-crud.git
 
-npm install sails-mysql
+2. cd to sails-crud directory 
 
+3. edit/configure mysql and mongodb database connections in config/connections.js file
 
-npm install sails-mongo
+4. Run below commands to install project dependencies
 
+    npm install
 
-npm install node-uuid
+    npm install sails-mysql
 
+    npm install sails-mongo
 
+    npm install node-uuid
 
-# Few API examples along with their respective payload
+# Run application in dev mode using below command
 
-POST http://localhost:1337/person/
+    sails lift
 
+# Create metadata(test data) for Person, BankDetails & TransactionDetails models using sails default APIs 
+
+    I used chrome's "Advance REST client" to execute & test below APIs. Make sure you have set application/json in Content-Type HTTP Header.
+
+    Content-Type: application/json
+
+# Populate Person model
+
+HTTP Method: POST 
+
+Request URL:- 
+
+    http://localhost:1337/person/
+
+JSON Payload 1:- 
 
 {
   "firstName":"Ranjeet",
@@ -33,6 +68,7 @@ POST http://localhost:1337/person/
   "accounts":[]
 }
 
+JSON Payload 2:- 
 
 {
   "firstName":"Sourav",
@@ -42,15 +78,23 @@ POST http://localhost:1337/person/
   "accounts":[]
 }
 
+# Verify Person data
 
-GET http://localhost:1337/person/
+HTTP Method: GET 
 
+Request URL:- 
 
---------------------------------------------------------
+    http://localhost:1337/person/
 
+# Populate BankDetails model
 
-POST http://localhost:1337/bankDetails/
+HTTP Method: POST 
 
+Request URL:- 
+
+    http://localhost:1337/bankDetails/
+
+JSON Payload 1:- 
 
 {
   "bankName":"CITI",
@@ -61,6 +105,7 @@ POST http://localhost:1337/bankDetails/
   "owner":1
 }
 
+JSON Payload 2:- 
 
 {
   "bankName":"HDFC",
@@ -71,15 +116,23 @@ POST http://localhost:1337/bankDetails/
   "owner":2
 }
 
+# Verify Bank Details
 
-GET http://localhost:1337/bankDetails/
+HTTP Method: GET 
 
+Request URL:- 
 
---------------------------------------------------------
+    http://localhost:1337/bankDetails/
 
+# Populate TransactionDetails model
 
-POST http://localhost:1337/transactionDetails/
+HTTP Method: POST 
 
+Request URL:- 
+
+    http://localhost:1337/transactionDetails/
+
+JSON Payload 1:- 
 
 {
   "txnAmount":501.51,
@@ -88,6 +141,7 @@ POST http://localhost:1337/transactionDetails/
   "receiver": 2
 }
 
+JSON Payload 2:- 
 
 {
   "txnAmount":101,
@@ -96,6 +150,7 @@ POST http://localhost:1337/transactionDetails/
   "receiver": 2
 }
 
+JSON Payload 3:- 
 
 {
   "txnAmount":1000,
@@ -104,6 +159,7 @@ POST http://localhost:1337/transactionDetails/
   "receiver": 2
 }
 
+JSON Payload 4:- 
 
 {
   "txnAmount":1500,
@@ -112,20 +168,34 @@ POST http://localhost:1337/transactionDetails/
   "receiver": 1
 }
 
+JSON Payload 5:- 
+
+{
+  "txnAmount":600,
+  "status":"pending",
+  "sender":2,
+  "receiver": 1
+}
 
 # APIs to GET transaction details based on different filters
 
+HTTP Method: GET 
 
-GET http://localhost:1337/transactionDetails/
+Get All transactions:-
 
+    http://localhost:1337/transactionDetails/
 
-GET http://localhost:1337/transactionDetails/success
+Get Successful transactions:-
 
+    http://localhost:1337/transactionDetails/success
 
-GET http://localhost:1337/transactionDetails/failed
+Get Failed transactions:-
 
+    http://localhost:1337/transactionDetails/failed
 
-GET http://localhost:1337/transactionDetails/filter?amountGreaterThan=600
+Get all transactions having transaction amount greater than or equals to 600:-
+
+    http://localhost:1337/transactionDetails/filter?amountGreaterThan=600
 
 
 
